@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yours, yesterday — Museo del Galeón</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* =====================================================================
+   IMAGE SLOTS (same system as the other pages): background photo of each
+   reflection + the white visitor silhouette that sits on top of it.
+   ===================================================================== */
+#y-bg1{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(15).png");
+background-size: 104%;
+background-position: 88% 40%;}
+#y-bg2{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(16).png");}
+#y-bg3{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(17).png");}
+#y-bg4{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(18).png");
+background-size: 104%;
+background-position: 145% 110% ;}
+#y-bg5{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(19).png");
+background-size: 90%;
+background-position: 30% 100%;}
+#y-fig1{background-image:url("yours-assets/sil1.png");}
+#y-fig2{background-image:url("yours-assets/sil2.png");}
+#y-fig3{background-image:url("yours-assets/sil3.png");}
+#y-fig4{background-image:url("yours-assets/sil4.png");}
+#y-fig5{background-image:url("yours-assets/sil5.png");}
+/* ===================================================================== */
+
+html{scroll-behavior:smooth;background:#000000}
+body{background:#000000}
+:root{--y-zoom:62%} /* Zoomed out so the entire envelope context is visible */
+.y-page{width:var(--y-zoom);margin:0 auto;container-type:inline-size;overflow:hidden;background:#000000;perspective:140cqw;perspective-origin:50% 30%}
+.y-sp{width:100%;background:#fff;position:relative}
+
+/* ---------- LACE FLAP (envelope flap, hinged at its base) ---------- */
+.y-flap{position:relative;width:100%;height:56.368cqw;z-index:5;transform-origin:50% 96%;transform-style:preserve-3d;backface-visibility:visible}
+.y-flap svg{display:block;width:100%;height:100%;overflow:visible}
+.y-flap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5.5cqw;background:linear-gradient(to top,rgba(0,0,0,.22),rgba(0,0,0,0));pointer-events:none;opacity:.0;transition:opacity 1.6s ease}
+html.js .y-flap{animation:y-unfold 2.4s cubic-bezier(.22,.7,.2,1) .35s both}
+@keyframes y-unfold{
+  0%{transform:rotateX(178deg);filter:brightness(.55)}
+  70%{filter:brightness(.9)}
+  100%{transform:rotateX(0);filter:none}
+}
+.y-flapwrap{position:relative;height:56.368cqw}
+
+/* ---------- TITLE ON TOP OF THE WHITE LACE ENVELOPE FLAP ---------- */
+.y-flap-title{
+  position:absolute;
+  top:31cqw;
+  left:0;
+  width:100%;
+  text-align:center;
+  color:#111;
+  z-index:8;
+  pointer-events:none;
+}
+.y-flap-title .pf-main{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:4.6cqw;
+  font-weight:400;
+  letter-spacing:0.03em;
+}
+.y-flap-title .sw-main{
+  font-family:"Pinyon Script","Snell Roundhand",cursive;
+  font-size:8.2cqw;
+  font-weight:400;
+  margin-right:0.2cqw;
+}
+.y-flap-title .sub-main{
+  font-family:Poppins,sans-serif;
+  font-style:italic;
+  font-size:1.35cqw;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:#555;
+  margin-top:0.6cqw;
+}
+
+/* ---------- FOLDED PAPER PANELS ---------- */
+.y-panel{position:relative;width:100%;height:56.222cqw;overflow:hidden;background:#000;color:#fff;transform-origin:50% 0;box-shadow:0 .9cqw 2.6cqw rgba(0,0,0,.45),0 -.4cqw 1.2cqw rgba(0,0,0,.25);z-index:2}
+.y-panel .slot{z-index:0;background-color:#000}
+.y-panel::before{content:"";position:absolute;left:0;right:0;top:0;height:3cqw;background:linear-gradient(to bottom,rgba(255,255,255,.10),rgba(255,255,255,0));z-index:3;pointer-events:none}
+html.js .y-panel:not(.in){transform:rotateX(-72deg);opacity:.0;filter:brightness(.35)}
+html.js .y-panel{transition:transform 1.3s cubic-bezier(.22,.7,.2,1),opacity .9s ease,filter 1.3s ease}
+.y-fig{position:absolute;z-index:1;background-size:100% 100%;background-repeat:no-repeat;filter:drop-shadow(0 0 .6cqw rgba(255,255,255,.35))}
+/* creased paper between panels */
+.y-gap{background:linear-gradient(to bottom,#fff 0,#fff 38%,#f1f1f1 49%,#e4e4e4 50%,#f5f5f5 51.5%,#fff 62%,#fff 100%)}
+
+/* ---------- CODED TEXT ---------- */
+.y-tx{position:absolute;left:0;width:100%;z-index:2;font-family:Poppins,system-ui,sans-serif;font-style:italic;font-weight:400;font-size:1.757cqw;color:#fff;text-shadow:0 0 .9cqw rgba(0,0,0,.55);-webkit-font-smoothing:antialiased}
+.y-tx b{font-weight:600}
+.y-ln{display:block;position:relative;height:var(--lh);line-height:height;height:var(--lh);line-height:var(--lh);white-space:nowrap}
+.y-ln.c{text-align:center}
+.y-ln.l{padding-left:5.710cqw}
+.y-ln.r{text-align:right;padding-right:5.640cqw}
+.y-ln .a,.y-ln .b{position:absolute;left:var(--x);top:0}
+
+/* ---------- ENVELOPE (bottom pocket) ---------- */
+.y-env{position:relative;width:100%;height:50.146cqw;z-index:4}
+.y-env svg{display:block;width:100%;height:100%;overflow:visible}
+.y-bflap{transition:transform 1.4s cubic-bezier(.22,.7,.2,1)}
+html.js .y-env:not(.in) .y-bflap{transform:translateY(22px)}
+
+/* ---------- PUFF-UP BACK TO TOP BUTTON ---------- */
+.back-to-top-btn{
+  position:fixed;
+  right:2.4cqw;
+  bottom:2.4cqw;
+  z-index:960;
+  width:3.6cqw;
+  height:3.6cqw;
+  min-width:44px;
+  min-height:44px;
+  border-radius:50%;
+  background:rgba(18,18,18,0.92);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 8px 24px rgba(0,0,0,0.85);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.3cqw;
+  opacity:0;
+  visibility:hidden;
+  transform:scale(0.6) translateY(16px);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.back-to-top-btn.show{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1) translateY(0);
+}
+
+/* Extra puff-up effect when hovering or reaching the bottom section */
+.back-to-top-btn.puff,
+.back-to-top-btn:hover{
+  transform:scale(1.22) translateY(-4px);
+  background:#ffffff;
+  color:#000000;
+  border-color:#ffffff;
+  box-shadow:0 0 24px rgba(255,255,255,0.45), 0 12px 28px rgba(0,0,0,0.9);
+}
+
+/* ---------- SITE FOOTER ---------- */
+
+</style>
+</head>
+
+<body id="top">
+<!-- ================= TOP NAVIGATION HEADER ================= -->
+<header class="site-header">
+  <a href="index.html" class="nav-brand">
+    <b>Museo</b> Del<br><span class="sw-accent">G</span><b>aleon</b>
+  </a>
+
+  <nav aria-label="Primary Navigation">
+    <ul class="nav-tabs">
+      <li class="nav-item">
+        <a href="index.html#the-prelude" class="nav-link">The prelude</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="InRetrospect.html" class="nav-link">
+          In retrospect <span class="nav-arrow">&#9662;</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="InRetrospect.html#talim">Kampilan and kalis</a></li>
+          <li><a href="InRetrospect.html#agriculture">Agriculture</a></li>
+          <li><a href="InRetrospect.html#pillars">Pillars of exchange</a></li>
+          <li><a href="InRetrospect.html#language">Language</a></li>
+          <li><a href="InRetrospect.html#galleon">Galleon</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="Yours.html" class="nav-link active">Yours, yesterday</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="y-page">
+
+<!-- ===== LACE ENVELOPE FLAP: folds down open when the page loads ===== -->
+<div class="y-flapwrap" style="margin-top:2.2cqw"><div class="y-flap"><svg viewBox="0 0 1366 770" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="7" height="7" fill="#fff"/><path d="M0 0H7M0 0V7" stroke="#4a4a4a" stroke-width="1.5" fill="none"/>
+    </pattern>
+    <filter id="lacesh" x="-10%" y="-10%" width="120%" height="125%"><feGaussianBlur in="SourceAlpha" stdDeviation="15"/><feComponentTransfer><feFuncA type="linear" slope="1.1"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="pg"><rect width="1366" height="770"/></clipPath>
+  </defs>
+  <g clip-path="url(#pg)"><g filter="url(#lacesh)"><circle cx="683.0" cy="72.0" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="608.6" cy="151.6" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="534.1" cy="231.3" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="459.7" cy="310.9" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="385.3" cy="390.5" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="310.9" cy="470.2" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="236.4" cy="549.8" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="162.0" cy="629.4" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="87.6" cy="709.1" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="13.2" cy="788.7" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="-61.3" cy="868.4" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="683.0" cy="72.0" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="757.4" cy="151.6" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="831.9" cy="231.3" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="906.3" cy="310.9" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="980.7" cy="390.5" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1055.1" cy="470.2" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1129.6" cy="549.8" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1204.0" cy="629.4" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1278.4" cy="709.1" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1352.8" cy="788.7" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><circle cx="1427.3" cy="868.4" r="66" fill="url(#hatch)" stroke="#fff" stroke-width="10"/><polygon points="683,72 1483,928.0 -117,928.0" fill="#fff"/></g><circle cx="608.6" cy="169.6" r="8.5" fill="#3a3a3a"/><circle cx="534.1" cy="249.3" r="8.5" fill="#3a3a3a"/><circle cx="459.7" cy="328.9" r="8.5" fill="#3a3a3a"/><circle cx="385.3" cy="408.5" r="8.5" fill="#3a3a3a"/><circle cx="310.9" cy="488.2" r="8.5" fill="#3a3a3a"/><circle cx="236.4" cy="567.8" r="8.5" fill="#3a3a3a"/><circle cx="162.0" cy="647.4" r="8.5" fill="#3a3a3a"/><circle cx="87.6" cy="727.1" r="8.5" fill="#3a3a3a"/><circle cx="13.2" cy="806.7" r="8.5" fill="#3a3a3a"/><circle cx="-61.3" cy="886.4" r="8.5" fill="#3a3a3a"/><circle cx="757.4" cy="169.6" r="8.5" fill="#3a3a3a"/><circle cx="831.9" cy="249.3" r="8.5" fill="#3a3a3a"/><circle cx="906.3" cy="328.9" r="8.5" fill="#3a3a3a"/><circle cx="980.7" cy="408.5" r="8.5" fill="#3a3a3a"/><circle cx="1055.1" cy="488.2" r="8.5" fill="#3a3a3a"/><circle cx="1129.6" cy="567.8" r="8.5" fill="#3a3a3a"/><circle cx="1204.0" cy="647.4" r="8.5" fill="#3a3a3a"/><circle cx="1278.4" cy="727.1" r="8.5" fill="#3a3a3a"/><circle cx="1352.8" cy="806.7" r="8.5" fill="#3a3a3a"/><circle cx="1427.3" cy="886.4" r="8.5" fill="#3a3a3a"/></g>
+</svg>
+  <!-- TITLE ON TOP OF THE ENVELOPE -->
+  <div class="y-flap-title">
+    <h1 class="pf-main"><span class="sw-main">Y</span><b>ours,</b> yesterday</h1>
+    <p class="sub-main">A letter unfolded from the past</p>
+  </div>
+</div></div>
+<div class="y-sp" style="height:14.422cqw"></div>
+
+<!-- ===== SECTION 1 ===== -->
+<section class="y-panel" id="y-s1" aria-label="Reflection 1">
+  <div class="slot" id="y-bg1"></div>
+  <div class="y-fig" id="y-fig1" role="img" aria-label="Silhouette of a visitor looking at the agricultural exhibit" style="left:40.483cqw;top:15.447cqw;width:21.669cqw;height:40.776cqw"></div>
+  <div class="y-tx " style="top:3.075cqw;--lh:2.635cqw">
+<span class="y-ln c">The exhibits tell stories of how the Philippines was shaped by <b>trade</b>, <b>cultural exchanges</b>,</span>
+<span class="y-ln c"><b>traditions</b>, and the <b>struggles of our ancestors</b>. From the agricultural products that traveled</span>
+<span class="y-ln c">across oceans to the weapons used to protect communities, each artifact represents a</span>
+<span class="y-ln c">different part of our history. The old books show how language and beliefs developed</span>
+<div class="y-ln"><span class="a" style="--x:8.638cqw">through cultural encounters, while the</span><span class="b" style="--x:57.467cqw">galleon represents the connections</span></div>
+<div class="y-ln"><span class="a" style="--x:6.589cqw">formed between distant countries.</span><span class="b" style="--x:57.247cqw">These exhibits also remind us that the</span></div>
+<div class="y-ln"><span class="a" style="--x:5.857cqw">past continues to influence our present.</span><span class="b" style="--x:56.442cqw">The food we eat, the words we use, and</span></div>
+<div class="y-ln"><span class="a" style="--x:10.469cqw">some of the traditions we practice</span><span class="b" style="--x:60.542cqw">carry traces of these historical</span></div>
+<div class="y-ln"><span class="a" style="--x:7.028cqw">exchanges. Through these displays,</span><span class="b" style="--x:59.297cqw">we realized that our present way of</span></div>
+<div class="y-ln"><span class="a" style="--x:7.028cqw">life is deeply connected to the</span><span class="b" style="--x:61.493cqw">experiences and decisions of the</span></div>
+<div class="y-ln"><span class="a" style="--x:18.814cqw">generations before us.</span></div>
+  </div>
+</section>
+<div class="y-sp y-gap" style="height:12.958cqw"></div>
+
+<!-- ===== SECTION 2 ===== -->
+<section class="y-panel" id="y-s2" aria-label="Reflection 2">
+  <div class="slot" id="y-bg2"></div>
+  <div class="y-fig" id="y-fig2" role="img" aria-label="Silhouette of a visitor looking at old maps" style="left:68.228cqw;top:18.228cqw;width:26.720cqw;height:37.994cqw"></div>
+  <div class="y-tx y-left" style="top:5.436cqw;--lh:2.452cqw">
+<span class="y-ln l">The <b>galleon</b> immediately caught our attention the moment we</span>
+<span class="y-ln l">entered the museum. It was not only because of its enormous</span>
+<span class="y-ln l">size, but also because visitors were given the opportunity to enter</span>
+<span class="y-ln l">and explore it. Seeing it up close made us appreciate the amount</span>
+<span class="y-ln l">of effort, planning, and craftsmanship that must have gone into</span>
+<span class="y-ln l">building such a massive vessel. Knowing that ships like these</span>
+<span class="y-ln l">once traveled across vast oceans made the experience even</span>
+<span class="y-ln l">more fascinating. However, aside from the galleon, we were also</span>
+<span class="y-ln l">particularly drawn to the spice exhibit. Different spices were</span>
+<span class="y-ln l">placed in separate jars, allowing visitors to smell and recognize</span>
+<span class="y-ln l">their distinct scents. Perhaps this caught our interest because we</span>
+<span class="y-ln l">enjoy interactive exhibits that allow us to experience something</span>
+<span class="y-ln l">beyond simply looking at an object. It made history feel more</span>
+<span class="y-ln l">engaging and personal. We realized that being able to explore,</span>
+<span class="y-ln l">touch, and smell certain elements of the past creates a different</span>
+<span class="y-ln l">kind of appreciation and understanding. It was no longer just</span>
+<span class="y-ln l">about learning what happened centuries ago, but about</span>
+<span class="y-ln l">experiencing a small part of what people might have</span>
+<span class="y-ln l">encountered during that time.</span>
+  </div>
+</section>
+<div class="y-sp y-gap" style="height:11.274cqw"></div>
+
+<!-- ===== SECTION 3 ===== -->
+<section class="y-panel" id="y-s3" aria-label="Reflection 3">
+  <div class="slot" id="y-bg3"></div>
+  <div class="y-fig" id="y-fig3" role="img" aria-label="Silhouette of a visitor in a hooded jacket" style="left:2.855cqw;top:10.102cqw;width:39.751cqw;height:46.120cqw"></div>
+  <div class="y-tx y-right" style="top:6.003cqw;--lh:2.635cqw">
+<span class="y-ln r">Through this experience, we learned that Filipino</span>
+<span class="y-ln r">identity is shaped by a <b>combination of our own</b></span>
+<span class="y-ln r"><b>traditions</b> and the <b>different cultural influences</b> we</span>
+<span class="y-ln r">encountered throughout history. Our language,</span>
+<span class="y-ln r">food, beliefs, and practices reflect generations of</span>
+<span class="y-ln r">interactions with other nations, particularly during</span>
+<span class="y-ln r">the period of the Manila-Acapulco Galleon Trade.</span>
+<span class="y-ln r">However, we also realized that our identity is not</span>
+<span class="y-ln r">defined solely by the influences of foreign cultures.</span>
+<span class="y-ln r">The exhibits, particularly the traditional Filipino</span>
+<span class="y-ln r">weapons and early writings, reminded me that we</span>
+<span class="y-ln r">already had our own traditions, skills, and ways of</span>
+<span class="y-ln r">life long before these encounters. This experience</span>
+<span class="y-ln r">made us appreciate that being Filipino means</span>
+<span class="y-ln r">carrying a history of resilience, adaptation, and</span>
+<span class="y-ln r">cultural diversity while recognizing the roots that</span>
+<span class="y-ln r">make our identity distinct.</span>
+  </div>
+</section>
+<div class="y-sp y-gap" style="height:11.786cqw"></div>
+
+<!-- ===== SECTION 4 ===== -->
+<section class="y-panel" id="y-s4" aria-label="Reflection 4">
+  <div class="slot" id="y-bg4"></div>
+  <div class="y-fig" id="y-fig4" role="img" aria-label="Silhouette of a visitor facing the galleon" style="left:37.555cqw;top:11.640cqw;width:29.429cqw;height:44.583cqw"></div>
+  <div class="y-tx " style="top:19.381cqw;--lh:2.672cqw">
+<div class="y-ln"><span class="a" style="--x:11.933cqw">Promoting and preserving our</span><span class="b" style="--x:59.663cqw">cultural heritage is important</span></div>
+<div class="y-ln"><span class="a" style="--x:8.419cqw">because it allows us to</span><span class="b" style="--x:59.004cqw">understand where we came from</span></div>
+<div class="y-ln"><span class="a" style="--x:10.981cqw">and appreciate the</span><span class="b" style="--x:61.127cqw">experiences that shaped our</span></div>
+<div class="y-ln"><span class="a" style="--x:7.906cqw">society. Our heritage carries</span><span class="b" style="--x:59.517cqw">stories, traditions, and knowledge</span></div>
+<div class="y-ln"><span class="a" style="--x:8.565cqw">that cannot simply be replaced</span><span class="b" style="--x:61.347cqw">once they are forgotten or lost.</span></div>
+<div class="y-ln"><span class="a" style="--x:10.029cqw">It also helps future generations</span><span class="b" style="--x:60.542cqw">understand that the things we</span></div>
+<div class="y-ln"><span class="a" style="--x:9.517cqw">practice and experience today have</span><span class="b" style="--x:68.155cqw">deeper historical roots.</span></div>
+<div class="y-ln"><span class="a" style="--x:9.297cqw">Preserving our cultural heritage is</span><span class="b" style="--x:65.666cqw">not only about protecting</span></div>
+<div class="y-ln"><span class="a" style="--x:10.395cqw">old artifacts or maintaining historical</span><span class="b" style="--x:67.789cqw">places, but also about</span></div>
+<div class="y-ln"><span class="a" style="--x:8.053cqw">keeping our traditions, languages, and</span><span class="b" style="--x:65.373cqw">values alive. By recognizing</span></div>
+<div class="y-ln"><span class="a" style="--x:8.565cqw">their importance, we develop a stronger</span><span class="b" style="--x:69.180cqw">sense of identity and a</span></div>
+<div class="y-ln"><span class="a" style="--x:10.322cqw">greater appreciation for the sacrifices</span><span class="b" style="--x:69.912cqw">and contributions of</span></div>
+<div class="y-ln"><span class="a" style="--x:19.107cqw">those who came before us.</span></div>
+  </div>
+</section>
+<div class="y-sp y-gap" style="height:11.274cqw"></div>
+
+<!-- ===== SECTION 5 ===== -->
+<section class="y-panel" id="y-s5" aria-label="Reflection 5">
+  <div class="slot" id="y-bg5"></div>
+  <div class="y-fig" id="y-fig5" role="img" aria-label="Silhouettes of four visitors standing together" style="left:33.382cqw;top:26.428cqw;width:27.086cqw;height:29.795cqw"></div>
+  <div class="y-tx " style="top:7.613cqw;--lh:2.635cqw">
+<span class="y-ln c">As members of the younger generation, we can contribute to heritage preservation by</span>
+<span class="y-ln c">taking an active interest in our history and sharing what we learn with others. We can</span>
+<span class="y-ln c">start by visiting museums, historical landmarks, and cultural sites in our communities,</span>
+<span class="y-ln c">while also encouraging our friends and families to appreciate these places. We can</span>
+<span class="y-ln c">use social media and other digital platforms to share information about Filipino</span>
+<span class="y-ln c">traditions, historical events, and local cultural practices, making them more accessible</span>
+<span class="y-ln c">to other young people. We should also take responsibility for protecting historical</span>
+<div class="y-ln"><span class="a" style="--x:10.981cqw">structures and artifacts</span><span class="b" style="--x:61.420cqw">by respecting museum rules,</span></div>
+<div class="y-ln"><span class="a" style="--x:12.445cqw">avoiding vandalism, and</span><span class="b" style="--x:65.813cqw">supporting community</span></div>
+<div class="y-ln"><span class="a" style="--x:11.713cqw">activities that promote</span><span class="b" style="--x:63.177cqw">cultural preservation. Most</span></div>
+<div class="y-ln"><span class="a" style="--x:9.517cqw">importantly, we must</span><span class="b" style="--x:66.252cqw">recognize that preserving</span></div>
+<div class="y-ln"><span class="a" style="--x:10.835cqw">our heritage is not</span><span class="b" style="--x:64.788cqw">solely the responsibility of</span></div>
+<div class="y-ln"><span class="a" style="--x:10.176cqw">historians or the</span><span class="b" style="--x:65.007cqw">government. It is a shared</span></div>
+<div class="y-ln"><span class="a" style="--x:10.176cqw">responsibility, and even</span><span class="b" style="--x:66.398cqw">our simplest actions can</span></div>
+<div class="y-ln"><span class="a" style="--x:12.079cqw">help ensure that our</span><span class="b" style="--x:69.766cqw">history and identity</span></div>
+<div class="y-ln"><span class="a" style="--x:10.249cqw">continue to be valued by</span><span class="b" style="--x:71.889cqw">future generations.</span></div>
+  </div>
+</section>
+<div class="y-sp" style="height:18.082cqw"></div>
+
+<!-- ===== ENVELOPE POCKET (bottom) ===== -->
+<div class="y-env" id="y-env"><svg viewBox="0 0 1366 685" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="fl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e1e1e"/><stop offset="1" stop-color="#161616"/></linearGradient>
+    <linearGradient id="fr" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e1e1e"/><stop offset="1" stop-color="#161616"/></linearGradient>
+    <linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262626"/><stop offset="1" stop-color="#171717"/></linearGradient>
+    <filter id="esh" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#000" flood-opacity=".7"/></filter>
+    <filter id="esh2" x="-10%" y="-20%" width="120%" height="140%"><feDropShadow dx="0" dy="-6" stdDeviation="10" flood-color="#000" flood-opacity=".75"/></filter>
+    <clipPath id="ec"><rect width="1366" height="685"/></clipPath>
+  </defs>
+  <g clip-path="url(#ec)">
+    <path filter="url(#esh)" fill="url(#fl)" d="M-40 80 Q-40 38 0 38 Q30 38 60 62 L525 478 Q552 502 552 536 L552 700 L-40 700 Z"/>
+    <path filter="url(#esh)" fill="url(#fr)" d="M1406 80 Q1406 38 1366 38 Q1336 38 1306 62 L841 478 Q814 502 814 536 L814 700 L1406 700 Z"/>
+    <g class="y-bflap"><path filter="url(#esh2)" fill="url(#fb)" d="M340 700 L560 520 Q640 484 683 483 Q726 484 806 520 L1026 700 Z"/>
+    <path d="M360 692 L572 524 Q640 492 683 491 Q726 492 794 524 L1006 692" fill="none" stroke="#3a3a3a" stroke-width="2" opacity=".55"/></g>
+  </g>
+</svg></div>
+
+</main>
+
+<!-- ================= PUFF-UP BACK TO TOP BUTTON ================= -->
+<button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top" title="Back to top">
+  &#9650;
+</button>
+
+<!-- ================= SITE FOOTER ================= -->
+<footer class="site-footer" id="siteFooter">
+  <div class="footer-brand"><b>Museo</b> Del <span class="sw-f">G</span><b>aleon</b></div>
+  <ul class="footer-links">
+    <li><a href="index.html#the-prelude">The prelude</a></li>
+    <li><a href="InRetrospect.html">In retrospect</a></li>
+    <li><a href="Yours.html">Yours, yesterday</a></li>
+  </ul>
+  <p class="footer-meta">
+    SM Mall of Asia Complex, Seaside Blvd cor. Sunset Ave, Pasay City, Metro Manila<br>
+    Readings in the Philippine History &mdash; Museo del Galeón Digital Exhibit
+  </p>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.y-panel,.y-env');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:0.12});
+  els.forEach(function(e){io.observe(e)});
+
+  /* Back-to-top button visibility & puff-up effect near bottom */
+  var topBtn=document.getElementById('backToTopBtn');
+  var footer=document.getElementById('siteFooter');
+
+  function handleScrollButton(){
+    if(!topBtn) return;
+    var scrollPos=window.scrollY;
+    var nearBottom=(window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 280);
+
+    topBtn.classList.toggle('show', scrollPos > 300);
+    topBtn.classList.toggle('puff', nearBottom);
+  }
+
+  if(topBtn){
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+    window.addEventListener('scroll', handleScrollButton, {passive:true});
+    handleScrollButton();
+  }
+})();
+</script>
+</body>
+</html>
