@@ -1,0 +1,367 @@
+/* =====================================================================
+   IMAGE SLOTS: every image on the page is a blank grey box.
+   Replace each url("") below with your own image. Boxes are named in
+   the HTML with comments (search "SLOT") and in CSS ids below.
+   To hide the little grey labels on the boxes, delete the rule
+   ".slot::before" further down.
+   ===================================================================== */
+#hero-bg {
+  background-image: url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(1).png");
+} /* paste image path */
+#photo-left{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(11).png");
+background-size: 115%;
+}  /* paste image path inside url("...") */
+#photo-center{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(12).png");
+background-size: 115%;
+background-position: 70% 60%;
+}  /* paste image path inside url("...") */
+#photo-right{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(13).png");}  /* paste image path inside url("...") */
+#band-talim{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(4).png");
+background-size: 90%;
+background-color: #000000; /* Zooms IN (larger than container) */} 
+ /* paste image path inside url("...") */
+#band-agriculture{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(6).png");
+background-size: 100%;
+background-color: #000000; /* Zooms IN (larger than container) */} 
+#band-pillars{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(7).png");
+background-size: 110%;
+background-color: #000000; 
+background-position: 20% 40%; }  /* paste image path inside url("...") */
+#band-language{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(8).png");
+background-size: 100%;
+background-color: #000000; /* Zooms IN (larger than container) */}  /* paste image path inside url("...") */
+#band-galleon{background-image:url("https://raw.githubusercontent.com/rossietheap/museo-de-galeon/main/sining%20sa%20museo%20(10).png");
+background-size: 80%;
+background-color: #000000; /* Zooms IN (larger than container) */}   /* paste image path inside url("...") */
+#envelope-card{background-image:url("");}  /* paste image path inside url("...") */
+/* ===================================================================== */
+:root{color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000}
+body{font-family:Poppins,system-ui,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.page{width:100%;container-type:inline-size;overflow:hidden}
+.s{position:relative;width:100%;overflow:hidden}
+.s0{background:#000;color:#fff}
+.dark{background:#000;color:#fff}
+.white{background:#fff;color:#000}
+.black{background:#000000;color:#ffffff}
+.slot{position:absolute;left:0;top:0;width:100%;height:100%;background:#2b2b2b center/cover no-repeat;display:flex;align-items:center;justify-content:center}
+.slot.photo,.slot.band{}
+.slot::before{content:attr(data-slot);font:600 1.3cqw Poppins,sans-serif;color:#7d7d7d;text-align:center;padding:0 1cqw}
+.hero-fade {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.45) 65%,
+    rgba(0, 0, 0, 0.85) 78%,
+    #000 100%
+  );
+}
+.ty{position:absolute;white-space:nowrap;line-height:1;color:inherit;}
+.ty b{font-weight:600}
+.pf{font-family:"Playfair Display",Georgia,serif;font-weight:400}
+.sw{font-family:"Pinyon Script","Snell Roundhand",cursive;font-weight:400}
+.addr{white-space:normal;width:34.591cqw;color:#fff}
+.os{font-family:"Open Sans",Arial,sans-serif;color:#222}
+.lb{position:absolute;transform:translateY(-50%);font:400 1.572cqw/1 Poppins,sans-serif;color:#fff;white-space:nowrap;text-transform:uppercase}
+.body {
+  position: absolute;
+  left: 12.579cqw;
+  width: 74.843cqw;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 1.02cqw;
+  line-height: 2.75cqw;    /* Vertical space between lines (above and below) */
+  word-spacing: -0.04em;   /* Horizontal space between words */
+  text-align: justify;
+  color: #000;
+}
+.body b{font-weight:600}
+.body u{text-decoration:underline}
+.body.light{color:#fff;left:14.675cqw;width:70.650cqw }
+.dark .body{color:#fff}
+.blk{position:absolute;inset:0;pointer-events:none}
+
+/* ================= NAVIGATION HEADER ================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4cqw 5cqw;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.95);
+}
+.nav-brand {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.7cqw;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+#the-prelude {
+  scroll-margin-top: 5cqw;
+}
+.nav-brand b {
+  font-weight: 700;
+}
+.nav-brand .sw-accent {
+  font-family: "Pinyon Script", "Snell Roundhand", cursive;
+  font-size: 2.3cqw;
+  margin-right: 0.1cqw;
+}
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 3.5cqw;
+  list-style: none;
+}
+.nav-item {
+  position: relative;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45cqw;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05cqw;
+  letter-spacing: 0.03em;
+  padding: 0.4cqw 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.nav-arrow {
+  font-size: 0.75cqw;
+  transition: transform 0.25s ease;
+}
+.nav-item:hover .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu under "In retrospect" */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0.6cqw);
+  min-width: 17cqw;
+  background: rgba(10, 10, 10, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.8cqw 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 0.55cqw 1.4cqw;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: Poppins, sans-serif;
+  font-style: italic;
+  font-size: 1.05cqw;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+.dropdown-menu li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding-left: 1.75cqw;
+}
+.ttl .ty {
+  text-shadow: 0 0.5cqw 2cqw rgba(0, 0, 0, 0.95),
+               0 0.2cqw 0.5cqw rgba(0, 0, 0, 1);
+}
+
+
+/* ================= EXHIBIT PARAGRAPH IMAGE SLOTS (1 PER EXHIBIT) ================= */
+#img-talim       { background-image: url(""); } /* Kampilan & Kalis photo */
+#img-agriculture { background-image: url(""); } /* Agriculture photo */
+#img-pillars     { background-image: url(""); } /* Pillars of Exchange photo */
+#img-language    { background-image: url(""); } /* Language photo */
+#img-galleon     { background-image: url(""); } /* Galleón photo */
+
+.exhibit-photo {
+  position: absolute;
+  width: 24cqw;
+  height: 18cqw;
+  background: #e9e9e9 center/cover no-repeat;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0.8cqw 2cqw rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.exhibit-photo::before {
+  content: attr(data-slot);
+  font: 600 0.9cqw Poppins, sans-serif;
+  color: #777;
+  text-align: center;
+  padding: 0 1cqw;
+}
+
+
+  .preview-card {
+    position: absolute;
+    top: 7.5cqw;
+    width: 37cqw;
+    height: 36cqw;
+    padding: 3.2cqw 3cqw;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    background: #fafafa;
+    box-shadow: 0 1cqw 2.8cqw rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+  }
+
+  .preview-tag {
+    font-family: Poppins, sans-serif;
+    font-size: 0.85cqw;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .preview-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 2.3cqw;
+    font-weight: 400;
+    color: #000;
+    line-height: 1.1;
+  }
+
+  .preview-title .sw-p {
+    font-family: "Pinyon Script", "Snell Roundhand", cursive;
+    font-size: 4.1cqw;
+    margin-right: 0.1cqw;
+  }
+
+  .preview-desc {
+    font-family: Poppins, sans-serif;
+    font-style: italic;
+    font-size: 1cqw;
+    line-height: 1.9cqw;
+    color: #222;
+    text-align: justify;
+  }
+
+  .see-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5cqw;
+    padding: 0.75cqw 2.2cqw;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.05cqw;
+    letter-spacing: 0.06em;
+    border: 1px solid #000;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  }
+
+  .see-more-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+
+  .site-footer{
+  width:100%;
+  margin-top:5cqw;
+  padding:3.8cqw 6cqw 3.2cqw;
+  background:#070707;
+  border-top:1px solid rgba(255,255,255,0.14);
+  color:rgba(255,255,255,0.82);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:1.4cqw;
+}
+.footer-brand{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:2cqw;
+  color:#fff;
+  letter-spacing:0.03em;
+}
+.footer-brand .sw-f{
+  font-family:"Pinyon Script","Snell Roundhand",cursive;
+  font-size:2.9cqw;
+  margin-right:0.1cqw;
+}
+.footer-links{
+  display:flex;
+  gap:2.8cqw;
+  list-style:none;
+}
+.footer-links a{
+  text-decoration:none;
+  color:rgba(255,255,255,0.7);
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1cqw;
+  letter-spacing:0.04em;
+  transition:color 0.25s ease;
+}
+.footer-links a:hover{
+  color:#fff;
+}
+.footer-meta{
+  font-family:Poppins,sans-serif;
+  font-style:italic;
+  font-size:0.88cqw;
+  color:rgba(255,255,255,0.48);
+  line-height:1.6;
+}
+
+@media (max-width:768px){
+  :root{--y-zoom:88%}
+  .back-to-top-btn{font-size:18px;right:16px;bottom:16px}
+  .footer-brand{font-size:20px}
+  .footer-brand .sw-f{font-size:28px}
+  .footer-links a{font-size:13px}
+  .footer-meta{font-size:11px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html.js .y-flap{animation:none}
+  html.js .y-panel:not(.in){transform:none;opacity:1;filter:none}
+  html.js .y-env:not(.in) .y-bflap{transform:none}
+  html{scroll-behavior:auto}
+}

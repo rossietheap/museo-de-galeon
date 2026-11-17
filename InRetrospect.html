@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In retrospect — Museo del Galeón</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Ballet:opsz@16..72&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Offset so sticky header doesn't cover the top of a section when clicked */
+      #in-retrospect-intro,
+      #talim,
+      #agriculture,
+      #pillars,
+      #language,
+      #galleon {
+        scroll-margin-top: 4.5cqw;
+      }
+
+      /* Active underline for top header dropdown links */
+      .dropdown-menu li a.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        border-left: 2px solid #fff;
+        padding-left: 1.75cqw;
+      }
+
+      /* Exhibit explanation layout card container */
+      .exhibit-content-box {
+        position: relative;
+        margin: 6cqw 0 6cqw 16cqw;
+        width: 72cqw;
+        display: flex;
+        flex-direction: column;
+        gap: 2.2cqw;
+      }
+
+      .exhibit-row {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 3cqw;
+      }
+
+      .exhibit-row .body {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        font-size: 1.05cqw;
+        line-height: 1.85cqw;
+        margin: 0;
+      }
+
+      .exhibit-row .body.full-width {
+        width: 100% !important;
+      }
+
+
+      /* ================= FLOATING SIDEBAR NAVIGATION (LEFT SIDE) ================= */
+      .art-sidebar {
+        position: fixed;
+        left: 1.6cqw;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 950;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1cqw;
+        padding: 1.2cqw 1.1cqw;
+        background: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+      }
+
+      .art-sidebar-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 0.85cqw;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 0.2cqw;
+      }
+
+      .side-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65cqw;
+        text-decoration: none;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 0.95cqw;
+        letter-spacing: 0.03em;
+        color: rgba(255, 255, 255, 0.62);
+        padding-bottom: 0.25cqw;
+        transition: color 0.25s ease;
+      }
+
+      .side-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1.5px;
+        background: #fff;
+        transition: width 0.3s ease;
+      }
+
+      .side-link .side-dot {
+        order: -1;
+        width: 0.42cqw;
+        height: 0.42cqw;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        background: transparent;
+        transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .side-link:hover,
+      .side-link.active {
+        color: #fff;
+      }
+
+      .side-link:hover::after,
+      .side-link.active::after {
+        width: 100%;
+      }
+
+      .side-link.active .side-dot {
+        background: #fff;
+        border-color: #fff;
+        transform: scale(1.25);
+      }
+
+      @media (max-width: 768px) {
+        .art-sidebar {
+          left: 6px;
+          padding: 8px 6px;
+          gap: 8px;
+        }
+        .art-sidebar-title,
+        .side-link span.side-label {
+          display: inline !important; 
+        }
+        .side-link .side-dot {
+          width: 6px;
+          height: 6px;
+        }
+        .exhibit-content-box {
+          left: 8cqw;
+          width: 84cqw;
+        }
+        .exhibit-row {
+          flex-direction: column;
+        }
+        .exhibit-row .body {
+          width: 100% !important;
+        }
+        .exhibit-photo {
+          width: 100% !important;
+          height: 45cqw;
+        }
+      }
+    </style>
+<style id="mobile-fixes">
+/* =====================================================================
+   mobile.css  --  phone / small-tablet layout (<= 768px)
+   Desktop is untouched: everything is inside the media query.
+   Must be linked LAST in <head> (after index.css and any inline <style>).
+   ===================================================================== */
+.side-toggle { display: none; }
+.side-num { opacity: .6; margin-right: .5em; font-variant-numeric: tabular-nums; }
+.side-num::after { content: "."; }
+.side-link.active .side-num { opacity: 1; }
+
+@media (max-width: 768px) {
+
+  /* ---------- shared: header ---------- */
+  .site-header {
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+  }
+  .nav-brand { font-size: 16px; }
+  .nav-brand br { display: none; }
+  .nav-brand .sw-accent { font-size: 24px; }
+  .nav-tabs { gap: 18px; flex-wrap: wrap; justify-content: center; }
+  .nav-link { font-size: 13px; padding: 4px 0; }
+  .nav-arrow, .dropdown-menu { display: none !important; } /* hover menus don't work on touch */
+
+  html { scroll-padding-top: 90px; }
+  #the-prelude, #in-retrospect-intro, #talim, #agriculture,
+  #pillars, #language, #galleon { scroll-margin-top: 90px !important; }
+
+  /* ---------- shared: body text becomes normal flowing text ---------- */
+  .s .body,
+  .s .body.light {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    transform: none !important;
+    margin: 0 20px 18px !important;
+    font-size: 14.5px !important;
+    line-height: 1.8 !important;
+    word-spacing: normal;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+
+  /* ---------- shared: footer + back-to-top ---------- */
+  .site-footer { padding: 32px 20px 28px; gap: 14px; margin-top: 0; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
+  .back-to-top-btn {
+    right: 16px !important; bottom: 16px !important;
+    font-size: 18px !important;
+    width: 44px !important; height: 44px !important;
+  }
+
+  /* ================= HOME (index.html) ================= */
+  /* hero: keep the artwork block (title, bg, logo) at its aspect ratio,
+     then let intro text + photos flow underneath */
+  .s0 { height: auto !important; padding-top: 92cqw; padding-bottom: 40px; }
+  .addr {
+    font-size: 9px !important; line-height: 12px !important;
+    width: 52cqw !important; white-space: normal !important;
+  }
+  /* intro text + the 3 photos in ONE row (same proportions as desktop) */
+  .s0 { display: flex; flex-wrap: wrap; justify-content: space-between; align-content: flex-start; }
+  .s0 .body.intro { flex: 0 0 calc(100% - 40px); min-width: 0; }
+  .slot.photo {
+    position: relative !important;
+    left: auto !important; top: auto !important;
+    height: 21.166cqw !important;
+    margin: 0 !important;
+    flex: 0 0 auto;
+  }
+  #photo-left   { width: 26.52%  !important; }
+  #photo-center { width: 38.47%  !important; }
+  #photo-right  { width: 26.625% !important; }
+
+  /* prelude */
+  #the-prelude { height: auto !important; padding: 34cqw 0 24px; }
+  #the-prelude .blk { transform: scale(2.1); transform-origin: 50% 0; }
+  #the-prelude .body { margin-bottom: 16px !important; }
+
+  /* the two preview cards stack */
+  #explore-more { height: auto !important; padding: 28px 20px 12px; }
+  .preview-card {
+    position: relative !important;
+    left: auto !important; top: auto !important;
+    width: 100%; height: auto;
+    padding: 26px 22px;
+    margin-bottom: 22px;
+    gap: 16px;
+  }
+  .preview-tag { font-size: 11px; }
+  .preview-title { font-size: 28px; }
+  .preview-title .sw-p { font-size: 48px; }
+  .preview-desc { font-size: 14px; line-height: 1.7; text-align: left; }
+  .see-more-btn { font-size: 15px; padding: 10px 26px; }
+
+  /* credits */
+  .s.black { height: auto !important; padding: 40px 16px 36px; }
+  .s.black > div {
+    position: static !important; transform: none !important;
+    text-align: center; white-space: normal !important; margin-bottom: 18px;
+  }
+  .s.black .ty.sw { font-size: 44px !important; }
+  .s.black .ty.pf { font-size: 22px !important; }
+  .s.black .body { text-align: center !important; margin: 0 0 22px !important; }
+
+  /* ================= IN RETROSPECT ================= */
+  #in-retrospect-intro { height: auto !important; padding: 28cqw 0 14px; }
+  #in-retrospect-intro .blk { transform: scale(2.1); transform-origin: 50% 0; }
+  #in-retrospect-intro .body { text-align: left !important; }
+
+  .lb { font-size: 9px; letter-spacing: .04em; }
+
+  .exhibit-section.white { height: auto !important; }
+  .exhibit-content-box {
+    position: static !important;
+    width: auto !important;
+    padding: 24px 14px 10px;
+    gap: 16px;
+  }
+  /* exhibit text only */
+  .exhibit-content-box { margin: 0 !important; width: auto !important; padding: 26px 0 18px !important; gap: 0 !important; }
+  .exhibit-row { flex-direction: column; gap: 0; align-items: stretch; }
+  .exhibit-row .body,
+  .exhibit-row .body.full-width {
+    width: auto !important; flex: 0 0 auto;
+    margin: 0 20px 16px !important;
+    font-size: 14px !important; line-height: 1.8 !important;
+  }
+
+  /* sidebar -> floating "Exhibits" menu, bottom-left (tap the round button) */
+  .art-sidebar {
+    top: auto !important; bottom: 16px !important;
+    left: 12px !important; right: auto !important;
+    transform: none !important;
+    flex-direction: column !important; align-items: flex-start !important;
+    gap: 8px !important; padding: 0 !important;
+    background: none !important; border: 0 !important; box-shadow: none !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  }
+  .art-sidebar .side-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(18,18,18,.94); color: #fff;
+    border: 1px solid rgba(255,255,255,.4);
+    box-shadow: 0 6px 20px rgba(0,0,0,.7);
+    font-size: 20px; line-height: 1; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .art-sidebar.open .side-toggle { background: #fff; color: #000; }
+
+  .art-sidebar:not(.open) .art-sidebar-title,
+  .art-sidebar:not(.open) .side-link { display: none !important; }
+
+  .art-sidebar.open .art-sidebar-title {
+    display: block !important;
+    margin: 0 0 2px 0;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 11px; letter-spacing: .16em;
+    color: #fff; background: rgba(18,18,18,.94);
+    border: 1px solid rgba(255,255,255,.25);
+  }
+  .art-sidebar.open .side-link {
+    display: inline-flex !important;
+    gap: 10px; padding: 10px 16px !important;
+    font-size: 14px; color: rgba(255,255,255,.85);
+    background: rgba(18,18,18,.94);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.6);
+  }
+  .art-sidebar .side-link .side-label { display: inline !important; }
+  .art-sidebar .side-link .side-dot { width: 8px !important; height: 8px !important; }
+  .art-sidebar .side-link::after { display: none !important; }
+  .art-sidebar .side-link.active {
+    background: #fff; color: #000; border-color: #fff;
+  }
+  .art-sidebar .side-link.active .side-dot { background: #000; border-color: #000; }
+
+  /* ================= YOURS, YESTERDAY ================= */
+  /* same layout as desktop: text sits on the pictures. Just use the full
+     screen width (desktop shows it at 62%) so everything is as big as possible */
+  .y-page { width: 100% !important; }
+  .y-flap-title .sub-main { font-size: 7.5px; letter-spacing: .16em; }
+}
+
+</style>
+</head>
+<body>
+  <!-- ================= TOP NAVIGATION HEADER ================= -->
+  <header class="site-header">
+    <a href="index.html" class="nav-brand">
+      <b>Museo</b> Del<br><span class="sw-accent">G</span><b>aleón</b>
+    </a>
+
+    <nav aria-label="Primary Navigation">
+      <ul class="nav-tabs">
+        <li class="nav-item">
+          <a href="index.html#the-prelude" class="nav-link" id="nav-prelude">The prelude</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#in-retrospect-intro" class="nav-link active" id="nav-retrospect">
+            In retrospect <span class="nav-arrow">&#9662;</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#talim" data-target="talim">Kampilan and kalis</a></li>
+            <li><a href="#agriculture" data-target="agriculture">Agriculture</a></li>
+            <li><a href="#pillars" data-target="pillars">Pillars of exchange</a></li>
+            <li><a href="#language" data-target="language">Language</a></li>
+            <li><a href="#galleon" data-target="galleon">Galleon</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="Yours.html" class="nav-link">Yours, yesterday</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================= SIDEBAR NAVIGATION (5 ART PIECES) ================= -->
+  <aside class="art-sidebar" aria-label="Art Pieces Navigation">
+    <span class="art-sidebar-title">Exhibits 1&ndash;5</span>
+    <a href="#talim" class="side-link" data-target="talim">
+      <span class="side-label"><span class="side-num">1</span>Kampilan &amp; Kalis</span>
+      <span class="side-dot"></span>
+    </a>
+    <a href="#agriculture" class="side-link" data-target="agriculture">
+      <span class="side-label"><span class="side-num">2</span>Agriculture</span>
+      <span class="side-dot"></span>
+    </a>
+    <a href="#pillars" class="side-link" data-target="pillars">
+      <span class="side-label"><span class="side-num">3</span>Pillars of Exchange</span>
+      <span class="side-dot"></span>
+    </a>
+    <a href="#language" class="side-link" data-target="language">
+      <span class="side-label"><span class="side-num">4</span>Language</span>
+      <span class="side-dot"></span>
+    </a>
+    <a href="#galleon" class="side-link" data-target="galleon">
+      <span class="side-label"><span class="side-num">5</span>Galleón</span>
+      <span class="side-dot"></span>
+    </a>
+    <button type="button" class="side-toggle" id="sideToggle" aria-label="Open exhibits menu" aria-expanded="false">&#9776;</button>
+  </aside>
+
+  <main class="page">
+
+    <!-- ===== IN RETROSPECT INTRODUCTION SECTION ===== -->
+    <section id="in-retrospect-intro" class="s white" style="height:26.5cqw">
+      <div class="blk">
+        <span class="ty pf" style="left:41.5cqw;top:5.2cqw;font-size:2.4cqw;"><b>In</b></span><br> <br>
+        <span class="ty sw" style="left:45.3cqw;top:4.1cqw;font-size:4.6cqw;">R</span>
+        <span class="ty pf" style="left:51.1cqw;top:5.2cqw;font-size:2.4cqw;">etrospect</span>
+      </div>
+      <p class="body" style="top:11.2cqw;text-align:center;left:16.5cqw;width:67cqw;line-height:1.95cqw;">
+        Step into the galleries of <b>Museo del Galeón</b>, where each artifact tells a story of craftsmanship, resilience, and global connection. Explore five featured exhibits—from blades forged in resistance and crops carried across oceans, to cannons, early printed books, and the galleon itself—revealing how centuries of trade and encounter continue to live within our Filipino heritage today.
+      </p>
+    </section>
+
+    <!-- ===== 1. KAMPILAN & KALIS ===== -->
+    <section id="talim" class="s dark exhibit-section" style="height:36.289cqw">
+      <div class="slot band" id="band-talim"></div>
+      <span class="lb" style="left:59.539cqw;top:14.500cqw;font-size:1.109cqw;">KAMPILAN &amp; KALIS:</span>
+      <span class="ty sw" style="left:38.899cqw;top:11.500cqw;font-size:11.109cqw;">T</span>
+      <span class="ty pf" style="left:52.549cqw;top:13.900cqw;font-size:5.386cqw;">alim ng</span>
+      <span class="ty sw" style="left:52.688cqw;top:15.200cqw;font-size:13.723cqw;">p</span>
+      <span class="ty pf" style="left:56.800cqw;top:19.00cqw;font-size:5.386cqw;">agtangis</span>
+    </section>
+    <section class="s white exhibit-section" data-exhibit="talim" style="height:auto">
+      <div class="exhibit-content-box">
+        <div class="exhibit-row">
+          <p class="body">The <b>kampilan and kalis</b> are <u>traditional Filipino swords, each carrying a distinct shape and design.</u> The kampilan features a long metal blade with one sharp edge, gradually widening toward the end where it forms two pointed tips. Its wooden handle extends from the base, providing a place to grip the sword. In contrast, the kalis has two sharp edges and a blade shaped with gentle waves, creating a pattern of curves along its length. Both swords combine wood and metal, showing the skill and creativity of the people who crafted them. The kampilan appears in ancient Filipino epics from Luzon, Visayas, and Mindanao, while the kalis, inspired by the Javanese kris, is closely associated with Muslim communities in Mindanao.</p>
+        </div>
+        <div class="exhibit-row">
+          <p class="body full-width">Beyond their distinct designs and craftsmanship, the kampilan and kalis are more than traditional swords; they bear witness to the courage, struggles, and sacrifices of those who came before us. Once wielded in battles to defend their communities, these blades carry the weight of a history marked by blood, sweat, and unwavering resistance. Their stories remind us that our heritage was shaped not only by traditions and cultural exchanges but also by those who fought to protect their land, beliefs, and way of life. These swords remain meaningful reminders of a past that deserves to be remembered and appreciated.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. AGRICULTURE ===== -->
+    <section id="agriculture" class="s dark exhibit-section" style="height:36.289cqw">
+      <div class="slot band" id="band-agriculture" data-slot=""></div>
+      <span class="lb" style="left:60.500cqw;top:17.200cqw;">AGRICULTURE:</span>
+      <span class="ty sw" style="left:17.500cqw;top:6.200cqw;font-size:9.916cqw;">H</span>
+      <span class="ty pf" style="left:32.500cqw;top:9.500cqw;font-size:5.289cqw;">igit pa</span>
+      <span class="ty pf" style="left:42.500cqw;top:14.200cqw;font-size:5.289cqw;">sa</span>
+      <span class="ty pf" style="left:37.500cqw;top:18.400cqw;font-size:5.289cqw;">mga</span>
+      <span class="ty sw" style="left:51.411cqw;top:14.500cqw;font-size:13.530cqw;">b</span>
+      <span class="ty pf" style="left:55.128cqw;top:18.400cqw;font-size:5.289cqw;">ungang</span>
+      <span class="ty pf" style="left:53.031cqw;top:24.200cqw;font-size:5.289cqw;">nakikita</span>
+    </section>
+    <section class="s white exhibit-section" data-exhibit="agriculture" style="height:auto">
+      <div class="exhibit-content-box">
+        <div class="exhibit-row">
+          <p class="body">Imagine the rough texture of the woven sacks, the weight of the piled harvest, and the distinct shapes of each fruit and crop. Picture the smooth, rounded surface of tomatoes, the uneven skin of pumpkins, and the tiny grains nestled inside the sacks. Almost as if freshly gathered from the fields, these agricultural products come together in a display of abundance. Yet, beyond their colors, shapes, and textures lies a journey across oceans and distant lands. Each crop represents an exchange of goods, knowledge, and culture that connected the Philippines to the rest of the world. What may seem like an ordinary harvest today was once part of a remarkable history of trade that helped shape the way we live.</p>
+        </div>
+        <div class="exhibit-row">
+          <p class="body full-width">One of the things that caught my attention was how realistic the <b>agricultural products</b> looked. At first glance, they seemed like actual harvests carefully arranged in front of me. What amazed me even more was learning that some of the food products we commonly see and consume today, such as tomatoes, were once part of the trade that connected the Philippines to other parts of the world. I realized that trade was not merely about buying and exchanging goods. It also played a significant role in introducing different crops, expanding our food choices, and influencing our culture and way of life. It made me appreciate how even the simplest things on our dining tables carry stories of the past.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. PILLARS OF EXCHANGE ===== -->
+    <section id="pillars" class="s dark exhibit-section" style="height:36.184cqw">
+      <div class="slot band" id="band-pillars" data-slot=""></div>
+      <span class="lb" style="left:53.556cqw;top:7.200cqw;">PILLARS OF EXCHANGE:</span>
+      <span class="ty sw" style="left:21.500cqw;top:7.500cqw;font-size:10.916cqw;">M</span>
+      <span class="ty pf" style="left:38.784cqw;top:8.500cqw;font-size:6.709cqw;">ga halagang</span>
+      <span class="ty pf" style="left:48.646cqw;top:15.200cqw;font-size:4.031cqw;"><i>hindi</i> kayang</span>
+      <span class="ty sw" style="left:40.994cqw;top:17.500cqw;font-size:10.530cqw;">b</span>
+      <span class="ty pf" style="left:44.025cqw;top:19.800cqw;font-size:5.709cqw;">ilangin</span>
+    </section>
+    <section class="s white exhibit-section" data-exhibit="pillars" style="height:auto">
+      <div class="exhibit-content-box">
+        <div class="exhibit-row">
+          <p class="body">Standing before <u>two massive cannons, their dark metal bodies rest on sturdy wooden platforms with wheels, while thick ropes lie across their surfaces.</u> Between them sits a rectangular wooden chest, representing the valuable cargo once transported across vast oceans. These objects take us back to a time when the sea connected distant nations through trade. During the Manila Galleon Trade, ships traveled between the Philippines and the Americas, carrying goods such as silk, porcelain, spices, and silver. Yet, these journeys brought more than material possessions; they also introduced different beliefs, traditions, knowledge, and cultural influences. The cannons represent the military power and protection surrounding these voyages, while the chest symbolizes the wealth and resources exchanged along the way. For more than 250 years, this trade route connected people and helped shape economies, cultures, and ways of life. Beyond the objects is a story of connection and change, reminding us that the greatest wealth of history cannot always be measured in gold.</p>
+        </div>
+        <div class="exhibit-row">
+          <p class="body full-width">The <b>Pillars of Exchange</b> made me realize how trade was never just about the goods being transported, but also about the cultures, ideas, and traditions that traveled with them. What I find fascinating is how these exchanges, which happened centuries ago, continue to leave traces in our society today. It made me appreciate how our Filipino identity was shaped by different encounters throughout history, reminding us that the culture we have today carries pieces of the past. This exhibit taught me to look beyond the material value of what was exchanged and recognize the lasting influence it left on generations. Because sometimes, what a nation gains from history cannot be measured by what it receives, but by what it carries forward.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. LANGUAGE ===== -->
+    <section id="language" class="s dark exhibit-section" style="height:36.184cqw">
+      <div class="slot band" id="band-language" data-slot=""></div>
+      <span class="lb" style="left:46.500cqw;top:14.200cqw;">LANGUAGE:</span>
+      <span class="ty sw" style="left:5.862cqw;top:11.500cqw;font-size:9.916cqw;">S</span>
+      <span class="ty pf" style="left:20.964cqw;top:16.800cqw;font-size:5.709cqw;">alitang <i>hindi</i></span>
+      <span class="ty sw" style="left:29.027cqw;top:22.500cqw;font-size:10.530cqw;">k</span>
+      <span class="ty pf" style="left:32.164cqw;top:24.800cqw;font-size:5.709cqw;">umupas</span>
+    </section>
+    <section class="s white exhibit-section" data-exhibit="language" style="height:auto">
+      <div class="exhibit-content-box">
+        <div class="exhibit-row">
+          <p class="body">Before us are <u>pages of history, printed on aged sheets of paper with faded shades of brown and yellow.</u> Some lie open like old books, revealing rows of carefully arranged words, while others display delicate borders, small illustrations, and printed symbols. Among these works are the two earliest books printed in the Philippines in 1593: the Doctrina Christiana en letra y lengua China and the Doctrina Christiana en lengua española y tagala. The latter holds particular significance as it was printed using both the native Baybayin script and the Latin alphabet. These books were created to introduce Christian teachings to Filipinos, yet their importance reaches far beyond religion. They serve as evidence of written language in Philippine society and reflect a remarkable meeting of Filipino, Spanish, and Chinese cultures, languages, and printing traditions.</p>
+        </div>
+        <div class="exhibit-row">
+          <p class="body full-width">These old writings represent something that time cannot easily erase: a people's identity, carried and preserved through <b>language</b>. Although these books were used to introduce foreign religious beliefs, they also preserved traces of our native language and demonstrated that Filipinos already had their own way of expressing thoughts through writing. They remind me that our history is not defined solely by the influences brought by other nations, but also by the culture, traditions, and identity that existed long before they arrived. The pages may have faded with time, but the words they carry continue to remind us of where we came from.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. GALLEON ===== -->
+    <section id="galleon" class="s dark exhibit-section" style="height:36.184cqw">
+      <div class="slot band" id="band-galleon" data-slot=""></div>
+      <span class="lb" style="left:25.500cqw;top:22.500cqw;font-size:1.530cqw">GALEÓN:</span>
+      <span class="ty sw" style="left:61.500cqw;top:8.00cqw;font-size:11.530cqw;">d</span>
+      <span class="ty pf" style="left:65.200cqw;top:10.500cqw;font-size:5.709cqw;">alawang</span>
+      <span class="ty pf" style="left:69.182cqw;top:16.200cqw;font-size:5.031cqw;"><i>daigdig</i></span>
+      <span class="ty sw" style="left:8.176cqw;top:13.500cqw;font-size:10.723cqw;">S</span>
+      <span class="ty pf" style="left:19.916cqw;top:16.200cqw;font-size:6.709cqw;">a</span>
+      <span class="ty pf" style="left:12.579cqw;top:22.200cqw;font-size:5.709cqw;">pagitan</span>
+      <span class="ty pf" style="left:25.092cqw;top:27.800cqw;font-size:5.709cqw;">ng</span>
+    </section>
+    <section class="s white exhibit-section" data-exhibit="galleon" style="height:auto">
+      <div class="exhibit-content-box">
+        <div class="exhibit-row">
+          <p class="body">A <b>galleon</b> was <u>a large sailing ship used by the Spanish during the sixteenth century</u> for long voyages across the oceans. The vessel displayed above the exhibition floor appears as if it is sailing through the open sea. Its body is wide and rounded, with a cream-colored bottom and warm brown wooden panels along its sides. Several tall masts rise from its deck, holding large cream-colored sails connected by ropes. Above it, tiny blue and white lights resemble stars scattered across the night sky. It carried people and goods across distant lands and played an important role in the Manila-Acapulco Galleon Trade, connecting the Philippines to Mexico and other parts of the world. These voyages became part of our history, bringing trade and cultural exchange while also marking the years of Spanish colonization.</p>
+        </div>
+        <div class="exhibit-row">
+          <p class="body full-width">This represents the journeys that connected the Philippines to distant lands and different cultures. Imagining this enormous wooden ship crossing the ocean made me realize how people from different parts of the world became connected long before modern transportation existed. Through these voyages, goods, traditions, and beliefs traveled from one country to another. However, these journeys also came with the struggles of colonization and the exploitation of many people. It reminds me that behind every ship that crossed the sea were people whose lives were changed by the journey.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="siteFooter">
+  <div class="footer-brand"><b>Museo</b> Del <span class="sw-f">G</span><b>aleón</b></div>
+  <ul class="footer-links">
+    <li><a href="index.html#the-prelude">The prelude</a></li>
+    <li><a href="InRetrospect.html">In retrospect</a></li>
+    <li><a href="Yours.html">Yours, yesterday</a></li>
+  </ul>
+  <p class="footer-meta">
+    SM Mall of Asia Complex, Seaside Blvd cor. Sunset Ave, Pasay City, Metro Manila<br>
+    Readings in the Philippine History &mdash; Museo del Galeón Digital Exhibit
+  </p>
+</footer>
+
+  <!-- ================= SCROLL-SPY SCRIPT (AUTO ACTIVE UNDERLINE) ================= -->
+  <script>
+    const exhibitIds = ['talim', 'agriculture', 'pillars', 'language', 'galleon'];
+    const sideLinks = document.querySelectorAll('.side-link');
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a[data-target]');
+
+    function setActiveExhibit(activeId) {
+      sideLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+      dropdownLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+
+    function updateScrollSpy() {
+      const scrollMarker = window.scrollY + window.innerHeight * 0.38;
+      let currentExhibit = null;
+
+      for (let i = 0; i < exhibitIds.length; i++) {
+        const banner = document.getElementById(exhibitIds[i]);
+        const nextBanner = i + 1 < exhibitIds.length
+          ? document.getElementById(exhibitIds[i + 1])
+          : null;
+
+        if (banner) {
+          const top = banner.offsetTop;
+          const bottom = nextBanner ? nextBanner.offsetTop : document.body.scrollHeight;
+          if (scrollMarker >= top && scrollMarker < bottom) {
+            currentExhibit = exhibitIds[i];
+            break;
+          }
+        }
+      }
+
+      setActiveExhibit(currentExhibit);
+    }
+
+    window.addEventListener('scroll', updateScrollSpy, { passive: true });
+    window.addEventListener('resize', updateScrollSpy);
+    updateScrollSpy();
+    /* mobile: open/close the floating Exhibits menu */
+    (function () {
+      var sb = document.querySelector('.art-sidebar');
+      var btn = document.getElementById('sideToggle');
+      if (!sb || !btn) return;
+      function setOpen(o) {
+        sb.classList.toggle('open', o);
+        btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+        btn.innerHTML = o ? '&#10005;' : '&#9776;';
+      }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!sb.classList.contains('open')); });
+      sb.querySelectorAll('.side-link').forEach(function (l) { l.addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('click', function (e) { if (!sb.contains(e.target)) setOpen(false); });
+    })();
+  </script>
+</body>
+</html>
