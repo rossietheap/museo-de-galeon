@@ -144,21 +144,21 @@ background-position: 0% 60%; } /* Kampilan & Kalis photo */
         transform: scale(1.25);
       }
 
-      @media (max-width: 768px) {
-        .art-sidebar {
-          left: 8px;
-          padding: 10px 8px;
-          gap: 12px;
-        }
-        .art-sidebar-title,
-        .side-link span.side-label {
-          display: none;
-        }
-        .side-link .side-dot {
-          width: 8px;
-          height: 8px;
-        }
-      }
+     @media (max-width: 768px) {
+  .art-sidebar {
+    left: 8px;
+    padding: 10px 8px;
+    gap: 12px;
+  }
+  .art-sidebar-title,
+  .side-link span.side-label {
+    display: none; /* <--- Ito ang nagtatago sa text kapag binuksan sa phone! */
+  }
+  .side-link .side-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
     </style>
 </head>
 <body>
